@@ -15,21 +15,28 @@ var getRandomItem = function (array) {
   return randomIndex;
 };
 
+// Функция генерирующая один объект
+var wizardItem = function (i) {
+  var wizard = {};
+  wizard.name = getRandomItem(names) + ' ' + getRandomItem(surname);
+  wizard.mantle = getRandomItem(coatColor);
+  wizard.eyes = getRandomItem(eyesColor);
+  return wizard;
+};
+
+
 // Функция генерирующая персонажей игры
 var getWizards = function () {
   var wizards = [];
   for (var i = 0; i < 4; i++) {
-    wizards[i] = {};
-    wizards[i].name = getRandomItem(names) + ' ' + getRandomItem(surname);
-    wizards[i].mantle = getRandomItem(coatColor);
-    wizards[i].eyes = getRandomItem(eyesColor);
+    wizards[i] = wizardItem(i);
   }
   return wizards;
 };
 
 var wizardsHero = getWizards();
 
-// Функция отрисовки скажочных героев
+// Функция отрисовки сказочных героев
 var renderWizard = function (array) {
   var wizardElement = wizardTemplate.cloneNode(true);
   wizardElement.querySelector('.setup-similar-label').textContent = array.name;
@@ -38,6 +45,7 @@ var renderWizard = function (array) {
   return wizardElement;
 };
 
+// Отрисовка сгенерированных DOM елементов
 var fragment = document.createDocumentFragment();
 for (var i = 0; i < wizardsHero.length; i++) {
   fragment.appendChild(renderWizard(wizardsHero[i]));
