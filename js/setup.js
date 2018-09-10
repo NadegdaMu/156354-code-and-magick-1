@@ -16,7 +16,7 @@ var getRandomItem = function (array) {
 };
 
 // Функция генерирующая один объект
-var wizardItem = function (i) {
+var wizardItem = function () {
   var wizard = {};
   wizard.name = getRandomItem(names) + ' ' + getRandomItem(surname);
   wizard.mantle = getRandomItem(coatColor);
